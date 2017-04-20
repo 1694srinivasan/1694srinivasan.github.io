@@ -1,4 +1,4 @@
-var app = angular.module('widgetapp' , [])
+var app = angular.module('widgetapp' , []);
 app.controller('widgetctrl' , function($scope, $http){
 
 	$http({method: 'GET',url: 'https://angapi.herokuapp.com/widgets/'}).

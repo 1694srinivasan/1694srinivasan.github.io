@@ -2,35 +2,41 @@
 <html>
 <head>
 	<title>widget ctrl</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+<link href="css/style.css" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="/js/widgetctrl.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<style>  
-    .row.content {height: 550px}
-    @media screen and (max-width: 767px) {
-      .row.content {height: auto;} 
-    }
- </style>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/widgetctrl.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/2.1.0/angular-datatables.js"></script>
+
 </head>
 <body ng-app="widgetapp"  ng-controller="widgetctrl">
 <nav class="navbar navbar-default">
-  <div class="dropdown" >
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" >Widgets
-    <span class="caret" ></span></button>
-    <div  class="dropdown-menu" >
-     	<li ng-repeat="x in dropdown" >
-     		<div ng-if="x.enable == true">
-     			<label><input type="checkbox" ng-click="closecheck($index,x.id,x.enable)" checked="checked">{{ x.widget_name}}</label>
-     		</div>
-     		<div ng-if="x.enable == false">
-     			<label><input type="checkbox" ng-click="closecheck($index,x.id,x.enable)">{{ x.widget_name}}</label>
-     		</div>
-     	</li>
+	<div class="navbar-header">
+		<button class="dropbtn" href="#">Niyata</button>
 	</div>
-  </div>
+	<div>
+		<button class="fa fa-sign-out dropbtn" href="#" style="float: right;">Logout</button>
+ 	</div>
+	<div class="dropdown">
+	  	<button class="dropbtn">Widgets</button>
+	  	<div class="dropdown-content">
+	    	<div ng-repeat="x in dropdown" >
+     			<div ng-if="x.enable == true">
+     				<center><label><input type="checkbox" ng-click="closecheck($index,x.id,x.enable)" checked="checked">{{ x.widget_name}}<hr></label></center>
+     			</div>
+     			<div ng-if="x.enable == false">
+     				<center><label><input type="checkbox" ng-click="closecheck($index,x.id,x.enable)">{{ x.widget_name}}<hr></label></center>
+     			</div>
+     		</div>
+	  	</div>
+	</div>
 </nav>
 <div class="container-fluid">
   	<div class="row content">  
@@ -41,7 +47,7 @@
       					<div ng-hide="myVar">
 							<div class="well">
 								<div>
-									<button type="button" class="glyphicon glyphicon-remove-sign" ng-click="close($index,x.id)" style="float:right;"></button>
+									<a  class="glyphicon glyphicon-remove-sign" ng-click="close($index,x.id)" style="float:right;"></a>
 								</div>
 				  				<div>
 				  					<h3><center>{{x.widget_name}}</center></h3>
@@ -50,7 +56,11 @@
 										</div>
 				  					</div>
 				  					<div ng-if="x.widget_name == 'Widget 2'">
-				  						<table class="table table-striped">
+				  						<div id="widget2">
+										</div>
+				  					</div>
+				  					<div ng-if="x.widget_name == 'Widget 3'">
+				  						<table class="table table-striped" datatable="ng">
 										    <thead>
 										      <tr>
 										        <th>S.no</th>
@@ -67,12 +77,8 @@
 											</tbody>
 							  			</table>
 				  					</div>
-				  					<div ng-if="x.widget_name == 'Widget 3'">
-				  						<div id="widget2">
-										</div>
-				  					</div>
 				  					<div ng-if="x.widget_name == 'Widget 4'">
-				  						<table class="table table-striped">
+				  						<table class="table table-striped" datatable="ng">
 										    <thead>
 										      <tr>
 										        <th>S.no</th>
